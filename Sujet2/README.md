@@ -21,10 +21,11 @@ Le programme ajoute les processus un par un à l'ordonnanceur puis trie la file 
 
 Pour valider le trie, lors du fonctionnement du programme, on affiche la priorité en plus.
 
-Ainsi on obtiendra par exemple : 
+**Ainsi on obtiendra par exemple :** 
 
----
-La priorité des processus a été définit comme suit :
+![Screen Console](screenshot_console.png)
+
+Par ailleurs, la priorité des processus a été définit comme suit :
 
   0. Temps réel
   1. Haute
@@ -33,4 +34,4 @@ La priorité des processus a été définit comme suit :
   4. Inférieure à la normale
   5. Basse
 
-La priorité est donc inversé, 0 étant le niveau ayant la plus haute priorité et inversement 5 ayant la plus faible.
+Ainsi 0 est le niveau ayant la plus haute priorité et 5 ayant la plus faible.
