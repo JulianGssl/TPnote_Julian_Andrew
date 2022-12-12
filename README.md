@@ -9,4 +9,4 @@ Le TP est composé de deux sujets:
   
       -> Réalisé par Julian
 
-Chaque dossier `sujet` comporte dans son dossier un README qui explique le fonctionnement du programme. 
+Chaque dossier **Sujet** comporte un README qui explique le fonctionnement du programme intrinsèque. 
