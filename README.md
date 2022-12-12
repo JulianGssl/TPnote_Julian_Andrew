@@ -8,3 +8,5 @@ Le TP est composé de deux sujets:
   -Sujet 2 : Ordonnancement de processus.
   
       -> Réalisé par Julian
+
+Chaque dossier `sujet` comporte dans son dossier un README qui explique le fonctionnement du programme. 
