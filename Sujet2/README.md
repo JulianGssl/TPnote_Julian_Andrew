@@ -1,5 +1,5 @@
 # Sujet 2 : Ordonnancement de processus
-## Répartition des fichiers
+## I.Répartition des fichiers
 
 - **main.c** : Contient le programme principal
 - **fonction.c** : Contient toutes les fonctions utilisé dans le projet
@@ -7,13 +7,21 @@
 - **Makefile** : Makefile qui sert à compiler et à executer le programme.
   - Commandes du Makefile : 
     - `make` pour compiler.
-    - `make prog` pour executer le programme.
+    - `make run` pour executer le programme.
     - `make clean` pour supprimer les fichiers objets.
     - `make cleanall` pour supprimer les fichiers objets et le fichier prog.
 
-## Fonctionnement programme
+## II.Fonctionnement du programme
 
-Le programme génère
+Le programme demande à l'utilisateur de choisir *n* nombre de processus qu'il souhaite générer.
+
+Ensuite le programme génère les *n* processus avec nom, priorité, temps d'éxécution aléatoire.
+
+Le programme ajoute les processus un par un à l'ordonnanceur puis trie la file de processus par priorité puis par temps d'éxécution.
+
+Pour valider le trie, lors du fonctionnement du programme, on affiche la priorité en plus.
+
+Ainsi on obtiendra par exemple : 
 
 ---
 La priorité des processus a été définit comme suit :
