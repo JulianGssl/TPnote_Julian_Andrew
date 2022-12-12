@@ -38,8 +38,8 @@
     float GenerateExecutionTime(void);
     int GenerateProcessus(Processus *p);
 
-    Ordonnanceur *initialisation();
     Bool empty_ordonnanceur(Ordonnanceur *ordo);
+    Ordonnanceur *initialisation();
     Ordonnanceur ajout_activite(Ordonnanceur *ordo, Processus p);
     void loading(float execuiontTime);
     void sort(Ordonnanceur *ordo);

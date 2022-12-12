@@ -33,3 +33,7 @@ clean :
 
 cleanall : clean
 	rm -rf prog 
+
+.PHONY : run 
+run : prog
+	./prog 

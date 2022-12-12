@@ -14,10 +14,8 @@ int main()
     int nb_process;
     scanf("%d", &nb_process);
 
-
     // On initalise l'ordonnanceur
     Ordonnanceur *ordo = initialisation();
-
 
     // On génère le nombre de processus demandé par l'utilisateur et on les ajoutes dans l'ordonnanceur
     for (int i = 1; i <= nb_process; i++)
@@ -25,11 +23,10 @@ int main()
         Processus p;
         GenerateProcessus(&p);
         ajout_activite(ordo, p);
+        sort(ordo);
     }
 
-
     // On fait un tour de l'ordonnanceur tant qu'il n'est pas vide
-    // TODOsort(ordo);
     run(ordo);
     return 0;
 }

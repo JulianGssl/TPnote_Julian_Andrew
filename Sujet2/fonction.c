@@ -88,31 +88,6 @@ Ordonnanceur *initialisation()
 //--------------------------------------------------------------//
 
 
-//  Fonction  //
-void sort(Ordonnanceur *ordo)
-{
-	Element *index;
-	Processus temp;
-	while(ordo->premier != NULL)
-	{
-		index = ordo->premier->suivant;
-
-		while(index!=NULL)
-		{
-			if(ordo->premier->Process.priority > index->Process.priority)
-			{
-				temp = ordo->premier->Process;
-				ordo->premier->Process = index->Process;
-				index->Process = temp;
-			}
-			index = index->suivant;
-		}
-		ordo->premier = ordo->premier->suivant;
-	}
-}
-//--------------------------------------------------------------//
-
-
 //  Fonction qui ajoute un processus à l'ordonnanceur  //
 Ordonnanceur ajout_activite(Ordonnanceur *ordo, Processus p)
 {
@@ -164,29 +139,60 @@ void loading(float executionTime)
     struct timespec delay;
     delay.tv_sec = 0;
     delay.tv_nsec = ms * 500000;
-    printf("\033[?25l");  // hide the cursor
+    printf("\033[?25l");  // on cache le curseur
     time(&start);
     while(1) {
         for (i = 0; i < 4; i++) {
-            printf("\33[2K\r");          // clear line
+            printf("\33[2K\r");          // on efface la ligne
             printf("[");      
-            for (j = 0; j < 10; j++) {  // 10 character terminal width
+            for (j = 0; j < 10; j++) {  // largeur de l'animation 
                 printf("%c", a[i]);
             }
 			printf("]");
             fflush(stdout);
             nanosleep(&delay, NULL);
         }
-        // stop after executionTime is reached
+        // stop après que executionTime soit atteint
         time(&now);
         if (difftime(now, start) >= executionTime ) 
         {
-            printf("\33[2K\r");  //clear line
+            printf("\33[2K\r");  // on efface la ligne
             printf("Done.\n");
             break;
         }
     }
-    printf("\033[?25h"); // restore the cursor
+    printf("\033[?25h"); // on restaure le curseur
+}
+//--------------------------------------------------------------//
+
+
+//  Fonction qui trie les processus dans l'ordonnanceur par ordre de priorité //
+void sort(Ordonnanceur *ordo)
+    {
+    struct Element *node, *temp;
+    Processus tempProcess;//temp variable to store node data
+    node = ordo->premier;
+    while(node != NULL)
+    {
+        temp=node; 
+        while (temp->suivant !=NULL)//travel till the second last element 
+        {
+            if(temp->Process.priority > temp->suivant->Process.priority)// compare the priority of the process 
+            {
+                tempProcess = temp->Process;
+                temp->Process = temp->suivant->Process;// swap the data
+                temp->suivant->Process = tempProcess;
+            }
+            if((temp->Process.priority == temp->suivant->Process.priority) && temp->Process.execution_time > temp->suivant->Process.execution_time)
+            {
+                tempProcess = temp->Process;
+                temp->Process = temp->suivant->Process;// swap the data
+                temp->suivant->Process = tempProcess;
+            }
+         temp = temp->suivant;    // move to the next element 
+        }
+        node = node->suivant;    // move to the next node
+    }
 }
 //--------------------------------------------------------------//
 
@@ -203,7 +209,8 @@ void step(Ordonnanceur *ordo)
 	Element *actuel = ordo->premier;
 	
 	printf("Processus: [%s] |", actuel->Process.name);
-	printf(" Temps d'execution: [%.2f]\n", actuel->Process.execution_time);
+	printf(" Temps d'execution: [%.2f] |", actuel->Process.execution_time);
+    printf(" Priorité: [%d]\n", actuel->Process.priority);
 	loading(actuel->Process.execution_time);
 	printf("\n");
 
