@@ -17,7 +17,7 @@ char* GenerateName(char *name)
 	for (int i=0; i<namelen; i++)
     {
         int j = rand();
-		name[i] = letters[j%2][random()%letterlen[j%2]];
+		name[i] = letters[j%2][random()%letterlen[j%2]];  // Alterne entre une voyelle et une consonne
     }
 	name[0] = toupper(name[0]);
     
